@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Daftar Portofolio</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        .card {
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        img {
+            margin-top: 10px;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Daftar Portofolio</h2>
+    <div id="portfolioDisplay">Memuat data...</div>
+
+    <script>
+        fetch('/api/portfolio')
+            .then(res => res.json())
+            .then(data => {
+                const display = document.getElementById('portfolioDisplay');
+                if (!Array.isArray(data) || data.length === 0) {
+                    display.innerHTML = '<p>Belum ada portofolio.</p>';
+                    return;
+                }
+
+                display.innerHTML = ''; // Kosongkan sebelum isi
+                data.forEach(item => {
+                    const div = document.createElement('div');
+                    div.className = 'card';
+                    div.innerHTML = `
+            <strong>${item.nama}</strong> - ${item.status}<br>
+            <em>${item.lulusan}</em><br>
+            Kontak: ${item.kontak}<br>
+            Instagram: <a href="${item.instagram}" target="_blank">${item.instagram}</a><br>
+            LinkedIn: <a href="${item.linkedin}" target="_blank">${item.linkedin}</a><br>
+            Portofolio: <a href="${item.portfolio}" target="_blank">${item.portfolio}</a><br>
+            Pengalaman: ${item.pengalaman}<br>
+            <img src="${item.foto}" alt="Foto" width="100"/>
+          `;
+                    display.appendChild(div);
+                });
+            })
+            .catch(err => {
+                document.getElementById('portfolioDisplay').innerHTML = '<p>Gagal memuat data.</p>';
+                console.error(err);
+            });
+    </script>
+</body>
+
+</html>

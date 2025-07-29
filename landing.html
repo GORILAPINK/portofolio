@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Landing Page - Portofolio dengan CV & Canva</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        body {
+            background: linear-gradient(135deg, #74c0fc 0%, #4dabf7 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 3rem 1rem 4rem;
+            color: #fff;
+        }
+
+        body.light-mode {
+            background: #e7f5ff;
+            color: #222;
+        }
+
+        header {
+            text-align: center;
+            max-width: 600px;
+            margin-bottom: 2rem;
+            filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.15));
+        }
+
+        header h1 {
+            font-weight: 600;
+            font-size: 3rem;
+            margin-bottom: 0.4rem;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.15);
+        }
+
+        body.light-mode header h1 {
+            text-shadow: none;
+        }
+
+        header p {
+            font-weight: 400;
+            font-size: 1.25rem;
+            opacity: 0.85;
+        }
+
+        body.light-mode header p {
+            opacity: 0.75;
+        }
+
+        button#createPortfolioBtn {
+            background: #e0f2ff;
+            color: #1c7ed6;
+            font-weight: 600;
+            font-size: 1.3rem;
+            padding: 0.85rem 3rem;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 8px 15px rgba(224, 242, 255, 0.7);
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+            user-select: none;
+        }
+
+        button#createPortfolioBtn:hover {
+            background: #aedcff;
+            color: #1864ab;
+            box-shadow: 0 12px 20px rgba(174, 220, 255, 0.9);
+            transform: translateY(-3px);
+        }
+
+        body.light-mode button#createPortfolioBtn {
+            background: #339af0;
+            color: #fff;
+            box-shadow: 0 6px 14px rgba(51, 154, 240, 0.7);
+        }
+
+        body.light-mode button#createPortfolioBtn:hover {
+            background: #1c7ed6;
+            box-shadow: 0 10px 20px rgba(28, 126, 214, 0.9);
+        }
+
+        #modeToggle {
+            position: fixed;
+            top: 1.2rem;
+            right: 1.2rem;
+            background: rgba(255, 255, 255, 0.9);
+            color: #1c7ed6;
+            border: none;
+            border-radius: 50%;
+            width: 42px;
+            height: 42px;
+            cursor: pointer;
+            font-size: 1.3rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease, color 0.3s ease;
+            user-select: none;
+        }
+
+        #modeToggle:hover {
+            background: #1c7ed6;
+            color: white;
+            box-shadow: 0 6px 16px rgba(28, 126, 214, 0.8);
+        }
+
+        body.light-mode #modeToggle {
+            background: #1c7ed6;
+            color: white;
+        }
+
+        body.light-mode #modeToggle:hover {
+            background: #1864ab;
+        }
+
+        section#about {
+            margin-top: 3rem;
+            max-width: 960px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .about-card {
+            background: rgba(224, 242, 255, 0.5);
+            padding: 1.6rem 1.8rem;
+            border-radius: 16px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            color: #1864ab;
+            text-align: center;
+            transition: background-color 0.3s ease;
+        }
+
+        body.light-mode .about-card {
+            background: #fff;
+            color: #1c7ed6;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+        }
+
+        .about-card h4 {
+            font-size: 1.3rem;
+            margin-bottom: 0.7rem;
+            font-weight: 700;
+        }
+
+        .about-card p {
+            font-size: 1rem;
+            line-height: 1.4;
+            opacity: 0.9;
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            button#createPortfolioBtn {
+                font-size: 1.1rem;
+                padding: 0.7rem 2rem;
+            }
+
+            section#about {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <button id="modeToggle" aria-label="Toggle mode gelap/terang" title="Toggle mode gelap/terang">🌙</button>
+
+    <header>
+        <h1>Buat Portofolio Lengkapmu!</h1>
+        <p>Isi data lengkap termasuk link sosmed, portofolio, dan upload CV.</p>
+        <button id="createPortfolioBtn">Buat Portofolio</button>
+    </header>
+
+    <section id="about" aria-label="Tentang website">
+        <div class="about-card">
+            <h4>Mudah Membuat Portofolio</h4>
+            <p>Isi data lengkapmu dengan form yang mudah dan cepat untuk membuat portofolio profesional.</p>
+        </div>
+        <div class="about-card">
+            <h4>Upload CV dan Foto Profil</h4>
+            <p>Upload gambar CV dan foto profil langsung dari browser, preview sebelum simpan.</p>
+        </div>
+        <div class="about-card">
+            <h4>Link Sosial Media & Portofolio</h4>
+            <p>Tampilkan semua link sosial media dan portofolio seperti Google Drive atau website secara rapi.</p>
+        </div>
+        <div class="about-card">
+            <h4>Buat CV di Canva</h4>
+            <p>Butuh CV profesional? Gunakan link kami ke Canva untuk buat dan edit CV gratis dan mudah.</p>
+        </div>
+    </section>
+
+    <script>
+        const modeToggle = document.getElementById('modeToggle');
+        const btn = document.getElementById('createPortfolioBtn');
+
+        function setMode(mode) {
+            if (mode === 'light') {
+                document.body.classList.add('light-mode');
+                modeToggle.textContent = '🌙';
+            } else {
+                document.body.classList.remove('light-mode');
+                modeToggle.textContent = '☀️';
+            }
+            localStorage.setItem('mode', mode);
+        }
+
+        const savedMode = localStorage.getItem('mode') || 'dark';
+        setMode(savedMode);
+
+        modeToggle.addEventListener('click', () => {
+            if (document.body.classList.contains('light-mode')) {
+                setMode('dark');
+            } else {
+                setMode('light');
+            }
+        });
+
+        btn.addEventListener('click', () => {
+            window.location.href = 'form.html';
+        });
+    </script>
+</body>
+
+</html>

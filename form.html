@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form Portofolio</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #e6f0fa;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+
+        form {
+            display: flex;
+            flex-direction: row;
+            gap: 40px;
+            max-width: 1200px;
+            margin: auto;
+            background: #fff;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+            transition: 0.3s ease;
+        }
+
+        .form-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-section h2 {
+            margin-bottom: 20px;
+            font-size: 20px;
+            color: #045b9c;
+        }
+
+        input[type="text"],
+        input[type="url"],
+        input[type="file"],
+        select,
+        textarea {
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            outline: none;
+            font-size: 14px;
+            background-color: #fdfdfd;
+            transition: border 0.3s;
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            border-color: #5aa9e6;
+        }
+
+        button[type="submit"] {
+            background: #2890d4;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-top: 10px;
+        }
+
+        button[type="submit"]:hover {
+            background: #227dbb;
+        }
+
+        /* Tambahan styling untuk keterangan kecil */
+        .note {
+            font-size: 12px;
+            color: #777;
+            margin-top: -15px;
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body>
+
+    <form id="portfolioForm" enctype="multipart/form-data">
+        <!-- Informasi Pribadi -->
+        <div class="form-section">
+            <h2>Informasi Pribadi</h2>
+            <input type="text" id="nama" placeholder="Nama Lengkap" required />
+            <select id="jk" required>
+                <option value="">Pilih Jenis Kelamin</option>
+                <option value="Laki-laki">Laki-laki</option>
+                <option value="Perempuan">Perempuan</option>
+            </select>
+            <input type="text" id="kontak" placeholder="Kontak (No HP / Email)" required />
+
+            <label for="foto">Upload Foto</label>
+            <input type="file" id="foto" accept="image/*" required />
+            <div class="note">Upload foto pegawai di sini (format JPG/PNG)</div>
+
+            <select id="status" required>
+                <option value="">Status Bekerja</option>
+                <option value="Bekerja">Bekerja</option>
+                <option value="Mahasiswa">Mahasiswa</option>
+                <option value="Tidak Bekerja">Tidak Bekerja</option>
+                <option value="Siswa">Siswa</option>
+            </select>
+            <input type="text" id="hobi" placeholder="Hobi" />
+            <input type="text" id="lulusan" placeholder="Lulusan / Sekolah" />
+        </div>
+
+        <!-- Portofolio & Media Sosial -->
+        <div class="form-section">
+            <h2>Portofolio & Sosial Media</h2>
+            <input type="url" id="instagram" placeholder="Link Instagram" required />
+            <input type="url" id="linkedin" placeholder="Link LinkedIn" required />
+            <input type="url" id="facebook" placeholder="Link TikTok" required />
+            <input type="url" id="portfolio" placeholder="Link Portofolio (GDrive atau lainnya)" />
+            <textarea id="pengalaman" placeholder="Pengalaman / Cerita Singkat" rows="5"></textarea>
+
+            <label for="cv">Upload CV</label>
+            <input type="file" id="cv" accept=".pdf,.doc,.docx" />
+            <div class="note">Upload CV pegawai di sini (format PDF/DOC)</div>
+
+            <button type="submit">Simpan</button>
+        </div>
+    </form>
+
+    <script>
+        const form = document.querySelector('#portfolioForm');
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const data = {
+                nama: document.getElementById('nama').value,
+                jk: document.getElementById('jk').value,
+                kontak: document.getElementById('kontak').value,
+                status: document.getElementById('status').value,
+                hobi: document.getElementById('hobi').value,
+                lulusan: document.getElementById('lulusan').value,
+                facebook: document.getElementById('facebook').value,
+                instagram: document.getElementById('instagram').value,
+                linkedin: document.getElementById('linkedin').value,
+                pengalaman: document.getElementById('pengalaman').value,
+                portfolio: document.getElementById('portfolio').value,
+                cv: document.getElementById('cv').files[0]?.name || '',
+                foto: document.getElementById('foto').files[0]?.name || ''
+            };
+
+            // Simpan data ke localStorage
+            localStorage.setItem('portofolioData', JSON.stringify(data));
+
+            // Pindah ke dashboard
+            window.location.href = 'dashboard.html';
+        });
+    </script>
+
+</body>
+
+</html>

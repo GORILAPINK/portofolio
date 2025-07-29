@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Dashboard Portofolio</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f9fafb;
+            color: #333;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        button {
+            background-color: #2563eb;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            margin: 8px 6px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            box-shadow: 0 4px 8px rgb(37 99 235 / 0.3);
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            user-select: none;
+        }
+
+        button:hover {
+            background-color: #1d4ed8;
+            box-shadow: 0 6px 14px rgb(29 78 216 / 0.5);
+        }
+
+        #portfolioDisplay {
+            margin-top: 30px;
+            width: 100%;
+            max-width: 650px;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 4px 12px rgb(0 0 0 / 0.05);
+            display: none;
+        }
+
+        #portfolioDisplay h3 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            color: #2563eb;
+            font-size: 28px;
+            font-weight: 700;
+            border-bottom: 2px solid #2563eb;
+            padding-bottom: 6px;
+        }
+
+        #portfolioDisplay p {
+            margin: 8px 0;
+            font-size: 16px;
+            line-height: 1.4;
+        }
+
+        #portfolioDisplay a {
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        #portfolioDisplay a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+
+    <button id="lihatPortofolioBtn">🔍 Lihat Portofolio</button>
+    <button id="tambahPortofolioBtn">➕ Tambah Portofolio</button>
+    <button id="kembaliBtn">⬅️ Kembali</button>
+    <button id="logoutBtn">🔒 Logout</button>
+
+    <div id="portfolioDisplay"></div>
+\Dokumen\portofolio
+    <script>
+        const lihatBtn = document.getElementById('lihatPortofolioBtn');
+        const tambahBtn = document.getElementById('tambahPortofolioBtn');
+        const kembaliBtn = document.getElementById('kembaliBtn');
+        const logoutBtn = document.getElementById('logoutBtn');
+        const portfolioDisplay = document.getElementById('portfolioDisplay');
+
+        lihatBtn.addEventListener('click', async () => {
+            try {
+                const res = await fetch('http://localhost:3000/api/portfolio');
+                if (!res.ok) throw new Error('Gagal mengambil data portofolio');
+                const data = await res.json();
+
+                portfolioDisplay.style.display = 'block';
+                portfolioDisplay.innerHTML = `
+          <h3>${data.nama}</h3>
+          <p><strong>Jenis Kelamin:</strong> ${data.jk}</p>
+          <p><strong>Kontak:</strong> ${data.kontak}</p>
+          <p><strong>Status:</strong> ${data.status}</p>
+          <p><strong>Hobi:</strong> ${data.hobi}</p>
+          <p><strong>Lulusan:</strong> ${data.lulusan}</p>
+          <p><strong>Instagram:</strong> <a href="${data.instagram}" target="_blank" rel="noopener">${data.instagram}</a></p>
+          <p><strong>LinkedIn:</strong> <a href="${data.linkedin}" target="_blank" rel="noopener">${data.linkedin}</a></p>
+          <p><strong>Facebook:</strong> <a href="${data.facebook}" target="_blank" rel="noopener">${data.facebook}</a></p>
+          <p><strong>Portfolio:</strong> <a href="${data.portfolio}" target="_blank" rel="noopener">${data.portfolio}</a></p>
+          <p><strong>Pengalaman:</strong> ${data.pengalaman}</p>
+          <p><strong>CV:</strong> ${data.cv}</p>
+          <p><strong>Foto:</strong> ${data.foto}</p>
+        `;
+            } catch (err) {
+                portfolioDisplay.style.display = 'block';
+                portfolioDisplay.innerHTML = `<p style="color:red;">${err.message}</p>`;
+            }
+        });
+
+        tambahBtn.addEventListener('click', () => {
+            window.location.href = 'form.html'; // Ganti sesuai file form portofolio kamu
+        });
+
+        kembaliBtn.addEventListener('click', () => {
+            window.history.back();
+        });
+
+        logoutBtn.addEventListener('click', () => {
+            localStorage.clear();
+            window.location.href = 'login.html'; // Ganti sesuai halaman login/lading kamu
+        });
+    </script>
+</body>
+
+</html>
