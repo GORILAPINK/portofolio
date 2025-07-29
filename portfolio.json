@@ -1,0 +1,17 @@
+[
+    {
+        "nama": "Aditya Firmansyah",
+        "jk": "Laki-laki",
+        "kontak": "081234567890",
+        "status": "Mahasiswa",
+        "hobi": "Ngoding, Desain UI/UX",
+        "lulusan": "SMA Negeri 1",
+        "instagram": "https://instagram.com/aditya",
+        "linkedin": "https://linkedin.com/in/aditya",
+        "facebook": "https://facebook.com/aditya",
+        "portfolio": "https://adityaportfolio.com",
+        "pengalaman": "2 tahun magang di PT XYZ",
+        "cv": "cv-aditya.pdf",
+        "foto": "foto-aditya.jpg"
+    }
+]
